@@ -1,0 +1,45 @@
+{% extends 'accounts/base.html'%} {% block content %} {%load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/marketplace.css'%}">
+
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div class="listing_vendor">
+        <h1 class="vendor_count">{{vendor_count}} Shop Found</h1>
+        {%for vendor in vendors %}
+        <div class="vendor_list">
+            <div>
+                <img src="{{vendor.user_profile.profile_picture.url }}" class="img-thumbnail" alt="...">
+            </div>
+            <div id="small_detail">
+                <div class="small_detail d_flex">
+                    <strong>{{vendor}}</strong>
+                    <small>{{ vendor.user_profile.city }},{{ vendor.user_profile.state }}, {{ vendor.user_profile.pin_code }}</small>
+                </div>
+            </div>
+            <div>
+                <a href="{% url 'vendor_detail' vendor.vendor_slug %}" class="btn btn-sm" id="view_menu">VIEW MENU</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="message_box">
+        <strong>I Am Listed! DO YOU?</strong>
+        <hr color="white"> {% if user.is_authenticated%}
+        <a href="{% url 'account'%}" class="btn btn-sm add_shop">Add Your Shop</a> {% else %}
+        <a href="{% url 'registerVendor' %}" class="btn btn-sm add_shop" style="color: white;border: 1px solid white; ">Add Your Shop</a> {% endif %}
+    </div>
+</body>
+
+</html>
+
+{%endblock%}

@@ -1,0 +1,72 @@
+{% extends 'accounts/base.html'%} {% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+        
+        <style>
+            body {
+                background-image:url("/static/img/ggpet.png");
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+        
+            #card {
+                background: transparent;
+                backdrop-filter: blur(20px);
+                margin-top:100px;
+                margin-left:500px;
+                width: 500px;
+                height: 340px;
+                padding: 20px;
+                border-radius: 15px; 
+                box-shadow:0 0 30px rgba(0,0,0,.5);
+                border : 2px solid rgba(255,255,255,.5);
+                
+            }
+        </style>
+        
+</head>
+
+<body>
+    
+
+    <br>
+    <div id="card" class="card">
+        <br>
+        <center><strong>Login</strong></center>
+
+        <form action='' method='POST'>
+
+            {% csrf_token %}
+            <div id="email">
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" placeholder="email">
+
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="password">
+                </div>
+            </div>
+
+            <input type='submit' value="Submit" class="btn btn-primary">
+
+            <a href="{% url 'forgot_password'%}" class="float-right">Forgot Password</a>
+        </form>
+
+
+        {% comment %} {%include 'include/alert.html'%} {% endcomment %}
+
+
+    </div>
+</body>
+
+</html>
+
+{%endblock content%}

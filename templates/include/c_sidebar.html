@@ -1,0 +1,92 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <title>sidebar</title>
+    <style>
+        .v-sidebar {
+            margin: 20px;
+            box-sizing: border-box;
+            display: inline;
+            width: 210px;
+            position: relative;
+            float: left;
+            box-shadow: 0 8px 20px rgb(133, 125, 125);
+            border: solid 1px rgb(244, 243, 244);
+            border-top-right-radius: 10px;
+            border-radius: 10px;
+            background-color: white;
+        }
+        /* .unlist {
+            margin-top: 10cm;
+            padding: 15px;
+            box-sizing: border-box;
+            margin: auto;
+            display: inline block;
+            background-color: aliceblue;
+            list-style: none;
+        } */
+        
+        .unlist {
+            text-align: left;
+        }
+        
+        .unlist li {
+            padding: 10px;
+            margin: 10px;
+        }
+        
+        .activate {
+            color: #26c00b;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 2px 4px 10px 6px rgb(73, 199, 73);
+        }
+        
+        .unlist li:hover {
+            /* background-color: #26c00b; */
+            color: #26c00b;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 2px 4px 10px 6px rgb(73, 199, 73);
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        #sidebar_logo {
+            display: inline;
+            height: 20px;
+            margin: 4px 15px;
+            width: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="v-sidebar">
+        <ul class="unlist">
+            <li class="{% if '/accounts/cust_account/' == request.path or '/accounts/customers/' ==  request.path %} activate {%endif%}">
+                <a href="{% url 'customer'%}"><i class="fa fa-home"></i> &nbsp; Dashboard</a>
+            </li>
+            <li class="{% if 'c_profile' in request.path %} activate {% endif %}">
+                <a href="{% url 'c_profile'%}"><i class="fa fa-user"></i> &nbsp;Account</a>
+            </li>
+
+            <li class="{% if '/my_orders/' in request.path %} activate {% endif %}">
+                <a href="{% url 'my_orders' %}"><i class="fa  fa-shopping-cart"></i> &nbsp;Orders</a>
+            </li>
+            <li class="list" id="last-list">
+                <a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> &nbsp;Logout</a>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
